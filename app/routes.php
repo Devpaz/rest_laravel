@@ -11,7 +11,31 @@
 |
 */
 
-Route::get('/', function()
+Route::group(['prefix'=>'api'], function()
 {
-	return View::make('hello');
+	Route::group([ 'prefix'=>'user'], function()
+	{
+		Route::get('/', function()
+		{
+			return 'Lista de Usuarios';
+		});
+		Route::get('/{id}', function($id)
+		{
+			return 'Devolver usuario'. $id;
+		});
+		Route::post('/crear', function()
+		{
+			return 'crear un nuevo usuario';
+		});
+		
+	});
 });
+
+
+
+
+
+//Route::get('/', function()
+//{
+//	return View::make('hello');
+//});
