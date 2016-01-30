@@ -26,9 +26,13 @@ Route::group(['prefix'=>'api'], function()
 
 
 
-
-
-Route::get('/', function()
+Route::get('docs', function()
 {
-	return View::make('hello');
+	return View::make('api.docs.index');
+});
+
+
+App::missing(function()
+{
+    return Redirect::to('docs');
 });
