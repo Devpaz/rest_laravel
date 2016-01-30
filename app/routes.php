@@ -15,19 +15,12 @@ Route::group(['prefix'=>'api'], function()
 {
 	Route::group([ 'prefix'=>'user'], function()
 	{
-		Route::get('/', function()
-		{
-			return 'Lista de Usuarios';
-		});
-		Route::get('/{id}', function($id)
-		{
-			return 'Devolver usuario'. $id;
-		});
-		Route::post('/crear', function()
-		{
-			return 'crear un nuevo usuario';
-		});
-		
+		Route::get('',['uses'=>'UserController@allUsers']);
+		Route::get('{id}',['uses'=>'UserController@getUser']);
+		Route::post('', ['uses'=>'UserController@saveUser']);
+		Route::put('{id}', ['uses'=>'UserController@updateUser']);
+		Route::delete('{id}', ['uses'=>'UserController@deleteUser']);
+
 	});
 });
 
@@ -35,7 +28,7 @@ Route::group(['prefix'=>'api'], function()
 
 
 
-//Route::get('/', function()
-//{
-//	return View::make('hello');
-//});
+Route::get('/', function()
+{
+	return View::make('hello');
+});
